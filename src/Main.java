@@ -1,8 +1,14 @@
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 public class Main {
+
+    public static final String CUBOS = "Cubos";
+    public static final String TETRAEDROS = "Tetraedros";
+    public static final String OCTAEDROS = "Octaedros";
+    public static final String ICOSAEDROS = "Icosaedros";
+    public static final String DODECAEDROS = "Dodecaedros";
+    private static Map<String,List<? extends Poliedro>> mapPoliedros = new HashMap<>();
+
 
     public static void main(String[] args) {
         System.out.println("Hello World!");
@@ -14,7 +20,8 @@ public class Main {
         int numero = sc.nextInt();
 
 
-        ObtenerCubos(sc, arrayList, numero);
+
+        obtenerCubos(sc, arrayList, numero);
 
         obtenerTetraedros(sc, arrayList, numero);
 
@@ -27,6 +34,31 @@ public class Main {
 
         procesarPoliedros(arrayList, numero);
 
+        mostrarMapPoliedros();
+
+
+        consultarMapPoliedros(CUBOS);
+        consultarMapPoliedros(TETRAEDROS);
+        consultarMapPoliedros(OCTAEDROS);
+        consultarMapPoliedros(DODECAEDROS);
+        consultarMapPoliedros(ICOSAEDROS);
+
+
+
+
+    }
+
+    private static void consultarMapPoliedros(String tipoPoliedro) {
+        List<Poliedro> poliedroList = (List<Poliedro>) mapPoliedros.get(tipoPoliedro);
+
+        System.out.println("La lista de " +tipoPoliedro+ " es: ");
+        System.out.println(poliedroList);
+        // System.out.println(mapPoliedros.get(CUBOS)); SIN EL CAST
+    }
+
+    private static void mostrarMapPoliedros() {
+        System.out.println("Map de Poliedros: ");
+        System.out.println(mapPoliedros);
     }
 
     private static void procesarPoliedros(List<Poliedro> arrayList, int numero) {
@@ -143,60 +175,90 @@ public class Main {
         System.out.println("El numero de poliedros de color Verde es: "+ color10);
     }
 
-    private static void ObtenerCubos(Scanner sc, List<Poliedro> arrayList, int numero) {
+    private static void obtenerCubos(Scanner sc, List<Poliedro> arrayList, int numero) {
+        List<Cubo> cuboList = new ArrayList<>();
         for (int i = 1; i <= numero; i++) {
             System.out.println("Introduce los datos del cubo " + i);
             System.out.println("Introduce la arista:");
             double arista = sc.nextDouble();
             String colorSeleccionado = solicitarColor();
 
-            arrayList.add(new Cubo(i, colorSeleccionado, arista));
+
+            Cubo cubo = new Cubo(i, colorSeleccionado, arista);
+            arrayList.add(cubo); //añadimos el cubo al arrayList gral
+            cuboList.add(cubo); // añadimos al arrayList particular
+            //guardamos el cubo una sola vez. No está por duplicado.
         }
+
+        mapPoliedros.put(CUBOS,cuboList);
     }
 
     private static void obtenerTetraedros(Scanner sc, List<Poliedro> arrayList, int numero) {
+
+        List<Tetraedro> tetraedroList = new ArrayList<>();
         for (int i = 1; i <= numero; i++) {
             System.out.println("Introduce los datos del tetraedro " + i);
             System.out.println("Introduce la arista:");
             double arista = sc.nextDouble();
             String colorSeleccionado = solicitarColor();
-
-            arrayList.add(new Tetraedro(i + numero, colorSeleccionado, arista));
+            Tetraedro tetraedro =new Tetraedro(i + numero, colorSeleccionado, arista);
+            arrayList.add(tetraedro);
+            tetraedroList.add(tetraedro);
         }
+        mapPoliedros.put(TETRAEDROS,tetraedroList);
+
     }
 
     private static void obtenerOctaedros(Scanner sc, List<Poliedro> arrayList, int numero) {
+
+        List<Octaedro> octaedroList = new ArrayList<>();
         for (int i = 1; i <= numero; i++) {
             System.out.println("Introduce los datos del octaedro " + i);
             System.out.println("Introduce la arista:");
             double arista = sc.nextDouble();
             String colorSeleccionado = solicitarColor();
-
-            arrayList.add(new Octaedro(i + 2 * numero, colorSeleccionado, arista));
+            Octaedro octaedro = new Octaedro(i + 2 * numero, colorSeleccionado, arista);
+            arrayList.add(octaedro);
+            octaedroList.add(octaedro);
         }
+
+        mapPoliedros.put(OCTAEDROS,octaedroList);
     }
 
     private static void obtenerIcosaedros(Scanner sc, List<Poliedro> arrayList, int numero) {
+
+        List<Icosaedro> icosaedroList = new ArrayList<>();
         for (int i = 1; i <= numero; i++) {
             System.out.println("Introduce los datos del icosaedro " + i);
             System.out.println("Introduce la arista:");
             double arista = sc.nextDouble();
             String colorSeleccionado = solicitarColor();
-
-            arrayList.add(new Octaedro(i + 4 * numero, colorSeleccionado, arista));
+            Icosaedro icosaedro =new Icosaedro(i + 4 * numero, colorSeleccionado, arista);
+            arrayList.add(icosaedro);
+            icosaedroList.add(icosaedro);
         }
+
+        mapPoliedros.put(ICOSAEDROS, icosaedroList);
     }
 
     private static void obtenerDodecaedros(Scanner sc, List<Poliedro> arrayList, int numero) {
+
+        List<Dodecaedro> dodecaedroList = new ArrayList<>();
         for (int i = 1; i <= numero; i++) {
             System.out.println("Introduce los datos del dodecaedro " + i);
             System.out.println("Introduce la arista:");
             double arista = sc.nextDouble();
+            System.out.println("Introduce el apotema:");
+            double apotema = sc.nextDouble();
             String colorSeleccionado = solicitarColor();
-
-            arrayList.add(new Octaedro(i + 3 * numero, colorSeleccionado, arista));
+            Dodecaedro dodecaedro =new Dodecaedro(i + 3 * numero, colorSeleccionado, arista, apotema);
+            arrayList.add(dodecaedro);
+            dodecaedroList.add(dodecaedro);
         }
+
+        mapPoliedros.put(DODECAEDROS, dodecaedroList);
     }
+
 
     private static void invocarMetodosEspecificos(Poliedro poliedro) {
         if (poliedro instanceof Cubo) {

@@ -19,4 +19,14 @@ public class Dodecaedro extends Poliedro {
     {
         return 30*arista*apotema;
     }
+
+    @Override
+    public String toString() {
+        return "Dodecaedro{" +
+                "id="+id+
+                ",arista="+arista+
+                ",apotema=" + apotema +
+                ",color=" +color+
+                '}';
+    }
 }

@@ -26,6 +26,7 @@ public class Octaedro extends Poliedro
         return "Octaedro{" +
                 "id=" +id+
                 ",arista=" +arista +
+                ",color=" +color+
                 "}";
     }
 

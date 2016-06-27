@@ -28,6 +28,7 @@ public class Tetraedro extends Poliedro
         return "Tetraedro{" +
                 "id=" + id+
                 ",arista="+arista+
+                ",color=" +color+
                 "}";
     }
 

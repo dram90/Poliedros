@@ -43,6 +43,7 @@ public class Cubo extends Poliedro {
         return "Cubo{" +
                 "id=" +id+
                 ",arista=" +arista +
+                ",color=" +color+
                 "}";
     }
 

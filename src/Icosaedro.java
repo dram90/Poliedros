@@ -15,4 +15,13 @@ public class Icosaedro extends Poliedro {
     public double calcularArea(){
         return 5*Math.sqrt(3)*Math.pow(arista,2);
     }
+
+    public String toString() {
+        return "Icosaedro{" +
+                "id="+id+
+                ",arista="+arista+
+                ",color=" +color+
+                '}';
+    }
+
 }
