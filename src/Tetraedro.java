@@ -29,7 +29,7 @@ public class Tetraedro extends Poliedro
                 "id=" + id+
                 ",arista="+arista+
                 ",color=" +color+
-                "}";
+                "}" + System.lineSeparator();
     }
 
 }

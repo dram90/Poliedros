@@ -16,6 +16,9 @@ public class MapColores {
         int numeroVerdes = sc.nextInt();
         List<Cubo> cuboListVerde = new ArrayList<>();
 
+
+
+
         for (int i = 1; i <= numeroVerdes; i++) {
 
             System.out.println("Introduce los datos del cubo " + i);
@@ -29,6 +32,9 @@ public class MapColores {
             arrayList.add(cubo); //añadimos el cubo al arrayList gral
         }
         mapColores.put("Verdes",cuboListVerde);
+
+
+
 
         System.out.println("Introduce el numero de cubos rojos");
         int numeroRojos = sc.nextInt();
