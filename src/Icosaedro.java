@@ -21,7 +21,7 @@ public class Icosaedro extends Poliedro {
                 "id="+id+
                 ",arista="+arista+
                 ",color=" +color+
-                '}';
+                '}' + System.lineSeparator();
     }
 
 }

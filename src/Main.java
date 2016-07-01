@@ -1,3 +1,6 @@
+import com.google.common.collect.ArrayListMultimap;
+import com.google.common.collect.ListMultimap;
+
 import java.util.*;
 
 public class Main {
@@ -7,8 +10,8 @@ public class Main {
     public static final String OCTAEDROS = "Octaedros";
     public static final String ICOSAEDROS = "Icosaedros";
     public static final String DODECAEDROS = "Dodecaedros";
-    private static Map<String,List<? extends Poliedro>> mapPoliedros = new HashMap<>();
-
+    static ListMultimap<String, Poliedro> colorPoliedroMultiMap = ArrayListMultimap.create();
+    static ListMultimap<String, Poliedro> tipoPoliedroMultiMap = ArrayListMultimap.create();
 
     public static void main(String[] args) {
         System.out.println("Hello World!");
@@ -34,31 +37,30 @@ public class Main {
 
         procesarPoliedros(arrayList, numero);
 
-        mostrarMapPoliedros();
+        mostrarMultiMapPoliedros();
 
 
-        consultarMapPoliedros(CUBOS);
-        consultarMapPoliedros(TETRAEDROS);
-        consultarMapPoliedros(OCTAEDROS);
-        consultarMapPoliedros(DODECAEDROS);
-        consultarMapPoliedros(ICOSAEDROS);
-
-
-
-
+        consultarMultiMapPoliedros(CUBOS);
+        consultarMultiMapPoliedros(TETRAEDROS);
+        consultarMultiMapPoliedros(OCTAEDROS);
+        consultarMultiMapPoliedros(DODECAEDROS);
+        consultarMultiMapPoliedros(ICOSAEDROS);
     }
 
-    private static void consultarMapPoliedros(String tipoPoliedro) {
-        List<Poliedro> poliedroList = (List<Poliedro>) mapPoliedros.get(tipoPoliedro);
+    private static void consultarMultiMapPoliedros(String tipoPoliedro) {
+
+        List<Poliedro> poliedroList = tipoPoliedroMultiMap.get(tipoPoliedro);
 
         System.out.println("La lista de " +tipoPoliedro+ " es: ");
         System.out.println(poliedroList);
-        // System.out.println(mapPoliedros.get(CUBOS)); SIN EL CAST
     }
 
-    private static void mostrarMapPoliedros() {
-        System.out.println("Map de Poliedros: ");
-        System.out.println(mapPoliedros);
+    private static void mostrarMultiMapPoliedros() {
+
+        System.out.println("MultiMap de tipos de poliedros: ");
+        System.out.println(tipoPoliedroMultiMap);
+        System.out.println("MultiMap de colores de poliedros");
+        System.out.println(colorPoliedroMultiMap);
     }
 
     private static void procesarPoliedros(List<Poliedro> arrayList, int numero) {
@@ -176,7 +178,7 @@ public class Main {
     }
 
     private static void obtenerCubos(Scanner sc, List<Poliedro> arrayList, int numero) {
-        List<Cubo> cuboList = new ArrayList<>();
+
         for (int i = 1; i <= numero; i++) {
             System.out.println("Introduce los datos del cubo " + i);
             System.out.println("Introduce la arista:");
@@ -185,17 +187,16 @@ public class Main {
 
 
             Cubo cubo = new Cubo(i, colorSeleccionado, arista);
-            arrayList.add(cubo); //añadimos el cubo al arrayList gral
-            cuboList.add(cubo); // añadimos al arrayList particular
             //guardamos el cubo una sola vez. No está por duplicado.
+            arrayList.add(cubo);
+            colorPoliedroMultiMap.put(colorSeleccionado, cubo);
+            tipoPoliedroMultiMap.put(CUBOS, cubo);
         }
-
-        mapPoliedros.put(CUBOS,cuboList);
     }
 
     private static void obtenerTetraedros(Scanner sc, List<Poliedro> arrayList, int numero) {
 
-        List<Tetraedro> tetraedroList = new ArrayList<>();
+
         for (int i = 1; i <= numero; i++) {
             System.out.println("Introduce los datos del tetraedro " + i);
             System.out.println("Introduce la arista:");
@@ -203,15 +204,16 @@ public class Main {
             String colorSeleccionado = solicitarColor();
             Tetraedro tetraedro =new Tetraedro(i + numero, colorSeleccionado, arista);
             arrayList.add(tetraedro);
-            tetraedroList.add(tetraedro);
+            colorPoliedroMultiMap.put(colorSeleccionado, tetraedro);
+            tipoPoliedroMultiMap.put(TETRAEDROS, tetraedro);
         }
-        mapPoliedros.put(TETRAEDROS,tetraedroList);
+
 
     }
 
     private static void obtenerOctaedros(Scanner sc, List<Poliedro> arrayList, int numero) {
 
-        List<Octaedro> octaedroList = new ArrayList<>();
+
         for (int i = 1; i <= numero; i++) {
             System.out.println("Introduce los datos del octaedro " + i);
             System.out.println("Introduce la arista:");
@@ -219,15 +221,16 @@ public class Main {
             String colorSeleccionado = solicitarColor();
             Octaedro octaedro = new Octaedro(i + 2 * numero, colorSeleccionado, arista);
             arrayList.add(octaedro);
-            octaedroList.add(octaedro);
+            colorPoliedroMultiMap.put(colorSeleccionado, octaedro);
+            tipoPoliedroMultiMap.put(OCTAEDROS, octaedro);
         }
 
-        mapPoliedros.put(OCTAEDROS,octaedroList);
+
     }
 
     private static void obtenerIcosaedros(Scanner sc, List<Poliedro> arrayList, int numero) {
 
-        List<Icosaedro> icosaedroList = new ArrayList<>();
+
         for (int i = 1; i <= numero; i++) {
             System.out.println("Introduce los datos del icosaedro " + i);
             System.out.println("Introduce la arista:");
@@ -235,15 +238,17 @@ public class Main {
             String colorSeleccionado = solicitarColor();
             Icosaedro icosaedro =new Icosaedro(i + 4 * numero, colorSeleccionado, arista);
             arrayList.add(icosaedro);
-            icosaedroList.add(icosaedro);
+            colorPoliedroMultiMap.put(colorSeleccionado, icosaedro);
+            tipoPoliedroMultiMap.put(ICOSAEDROS, icosaedro);
+
         }
 
-        mapPoliedros.put(ICOSAEDROS, icosaedroList);
+
     }
 
     private static void obtenerDodecaedros(Scanner sc, List<Poliedro> arrayList, int numero) {
 
-        List<Dodecaedro> dodecaedroList = new ArrayList<>();
+
         for (int i = 1; i <= numero; i++) {
             System.out.println("Introduce los datos del dodecaedro " + i);
             System.out.println("Introduce la arista:");
@@ -253,10 +258,10 @@ public class Main {
             String colorSeleccionado = solicitarColor();
             Dodecaedro dodecaedro =new Dodecaedro(i + 3 * numero, colorSeleccionado, arista, apotema);
             arrayList.add(dodecaedro);
-            dodecaedroList.add(dodecaedro);
+            colorPoliedroMultiMap.put(colorSeleccionado, dodecaedro);
+            tipoPoliedroMultiMap.put(DODECAEDROS, dodecaedro);
         }
 
-        mapPoliedros.put(DODECAEDROS, dodecaedroList);
     }
 
 

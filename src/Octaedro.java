@@ -27,7 +27,7 @@ public class Octaedro extends Poliedro
                 "id=" +id+
                 ",arista=" +arista +
                 ",color=" +color+
-                "}";
+                "}" + System.lineSeparator();
     }
 
 }

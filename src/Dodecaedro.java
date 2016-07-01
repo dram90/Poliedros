@@ -27,6 +27,6 @@ public class Dodecaedro extends Poliedro {
                 ",arista="+arista+
                 ",apotema=" + apotema +
                 ",color=" +color+
-                '}';
+                '}' + System.lineSeparator();
     }
 }
