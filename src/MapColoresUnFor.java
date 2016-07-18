@@ -3,9 +3,6 @@ import com.google.common.collect.ListMultimap;
 
 import java.util.*;
 
-/**
- * Created by professor on 27/06/2016.
- */
 public class MapColoresUnFor {
 
 

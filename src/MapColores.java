@@ -1,8 +1,5 @@
 import java.util.*;
 
-/**
- * Created by professor on 27/06/2016.
- */
 public class MapColores {
 
     private static Scanner sc = new Scanner(System.in);
