@@ -156,7 +156,7 @@ public class Main {
             }
 
         }
-        int totalPoliedros = numero * 3;
+        int totalPoliedros = numero * 5; //total=numero de poliedros de cada tipo y hay 5 tipos: cubo, tetraedro, octaedro, dodecaedro, icosaedro.
         double media = totalVolumen / totalPoliedros;
         System.out.println("La media de los volumenes es = " + media);
         System.out.println("El poliedro de volumen maximo es " + max);
