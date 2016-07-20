@@ -1,9 +1,12 @@
 import com.google.common.collect.ArrayListMultimap;
 import com.google.common.collect.ListMultimap;
+import com.sun.scenario.effect.impl.sw.sse.SSEBlend_SRC_OUTPeer;
 
 import java.util.*;
 
 public class Main {
+
+//-------------------------------------------DECLARACIÓN DE CONSTANTES--------------------------------------------------
 
     public static final String CUBOS = "Cubos";
     public static final String TETRAEDROS = "Tetraedros";
@@ -13,15 +16,20 @@ public class Main {
     static ListMultimap<String, Poliedro> colorPoliedroMultiMap = ArrayListMultimap.create();
     static ListMultimap<String, Poliedro> tipoPoliedroMultiMap = ArrayListMultimap.create();
 
+//------------------------------------------MAIN + CONSULTAS MULTIMAPS--------------------------------------------------
+
     public static void main(String[] args) {
-        System.out.println("Hello World!");
+        System.out.println("================================");
+        System.out.println("BIENVENIDOS A LA APP POLIEDROS");
+        System.out.println("================================");
+
+        System.out.println("");
 
         Scanner sc = new Scanner(System.in);
 
         List<Poliedro> arrayList = new ArrayList<>();
         System.out.println("Introduce el numero de poliedros para cada tipo:  ");
         int numero = sc.nextInt();
-
 
 
         obtenerCubos(sc, arrayList, numero);
@@ -34,8 +42,8 @@ public class Main {
 
         obtenerIcosaedros(sc, arrayList, numero);
 
-
         procesarPoliedros(arrayList, numero);
+
 
         mostrarMultiMapPoliedros();
 
@@ -156,6 +164,8 @@ public class Main {
             }
 
         }
+//----------------------------------------------SOUT DE LA APLICACIÓN---------------------------------------------------
+
         int totalPoliedros = numero * 5; //total=numero de poliedros de cada tipo y hay 5 tipos: cubo, tetraedro, octaedro, dodecaedro, icosaedro.
         double media = totalVolumen / totalPoliedros;
         System.out.println("La media de los volumenes es = " + media);
@@ -175,12 +185,18 @@ public class Main {
         System.out.println("El numero de poliedros de color Rojo es: "+ color8);
         System.out.println("El numero de poliedros de color Rosa es: "+ color9);
         System.out.println("El numero de poliedros de color Verde es: "+ color10);
+
     }
+
+//--------------------------------------------OBTENER DATOS POLIEDROS---------------------------------------------------
 
     private static void obtenerCubos(Scanner sc, List<Poliedro> arrayList, int numero) {
 
         for (int i = 1; i <= numero; i++) {
+            System.out.println("_____________________________________________________________________________________");
+            System.out.println("");
             System.out.println("Introduce los datos del cubo " + i);
+            System.out.println("");
             System.out.println("Introduce la arista:");
             double arista = sc.nextDouble();
             String colorSeleccionado = solicitarColor();
@@ -198,7 +214,10 @@ public class Main {
 
 
         for (int i = 1; i <= numero; i++) {
+            System.out.println("_____________________________________________________________________________________");
+            System.out.println("");
             System.out.println("Introduce los datos del tetraedro " + i);
+            System.out.println("");
             System.out.println("Introduce la arista:");
             double arista = sc.nextDouble();
             String colorSeleccionado = solicitarColor();
@@ -215,7 +234,10 @@ public class Main {
 
 
         for (int i = 1; i <= numero; i++) {
+            System.out.println("_____________________________________________________________________________________");
+            System.out.println("");
             System.out.println("Introduce los datos del octaedro " + i);
+            System.out.println("");
             System.out.println("Introduce la arista:");
             double arista = sc.nextDouble();
             String colorSeleccionado = solicitarColor();
@@ -232,7 +254,10 @@ public class Main {
 
 
         for (int i = 1; i <= numero; i++) {
+            System.out.println("_____________________________________________________________________________________");
+            System.out.println("");
             System.out.println("Introduce los datos del icosaedro " + i);
+            System.out.println("");
             System.out.println("Introduce la arista:");
             double arista = sc.nextDouble();
             String colorSeleccionado = solicitarColor();
@@ -250,7 +275,10 @@ public class Main {
 
 
         for (int i = 1; i <= numero; i++) {
+            System.out.println("_____________________________________________________________________________________");
+            System.out.println("");
             System.out.println("Introduce los datos del dodecaedro " + i);
+            System.out.println("");
             System.out.println("Introduce la arista:");
             double arista = sc.nextDouble();
             System.out.println("Introduce el apotema:");
@@ -264,6 +292,7 @@ public class Main {
 
     }
 
+//-------------------------------------------INVOCAR MÉTODOS ESPECÍFICOS------------------------------------------------
 
     private static void invocarMetodosEspecificos(Poliedro poliedro) {
         if (poliedro instanceof Cubo) {
@@ -289,6 +318,7 @@ public class Main {
         }
     }
 
+//-------------------------------------------SOLICITAR COLOR------------------------------------------------------------
 
     private static String solicitarColor() {
 

@@ -9,7 +9,7 @@ public class Icosaedro extends Poliedro {
 
     @Override
     public double calcularVolumen() {
-        return (5/12)*Math.pow(arista,3)*(3+Math.sqrt(5));
+        return (5.0 / 12.0) * Math.pow(arista, 3) * (3 + Math.sqrt(5));
     }
 
     public double calcularArea(){
